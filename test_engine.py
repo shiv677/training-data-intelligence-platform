@@ -75,6 +75,10 @@ def test_minhash_jaccard_similarity():
     sim_diff = minhash_jaccard_similarity(sig1, sig3)
     assert sim_diff < 0.20
 
+    # Configurable num_perm > 64
+    sig_128 = compute_minhash("sample text", num_perm=128)
+    assert len(sig_128) == 128
+
 
 def test_quality_scoring_rejection_rules():
     # Empty text
@@ -90,6 +94,8 @@ def test_quality_scoring_rejection_rules():
     # Gibberish / low alphanumeric density
     symbols_res = score_text_quality("@@@ ### $$$ %%% ^^^ &&& *** ((( ))) ___ +++ === ~~~", min_words=5)
     assert not symbols_res.passed
+    underscore_spam = score_text_quality("___ ___ ___ ___ ___ @@@ ### $$$ %%% ^^^", min_words=5)
+    assert underscore_spam.passed is False
 
     # Repetition spam
     spam = "repeat " * 30

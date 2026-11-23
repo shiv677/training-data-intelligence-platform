@@ -3,7 +3,7 @@
 [![Python 3.12](https://img.shields.io/badge/Python-3.12-blue.svg)](https://www.python.org/)
 [![Pydantic v2](https://img.shields.io/badge/Pydantic-v2.13-green.svg)](https://docs.pydantic.dev/)
 [![Tests Passing](https://img.shields.io/badge/Tests-Passing-brightgreen.svg)](test_engine.py)
-[![License: MIT](https://img.shields.io/badge/License-MIT-purple.svg)](../../LICENSE)
+[![License: MIT](https://img.shields.io/badge/License-MIT-purple.svg)](https://opensource.org/licenses/MIT)
 
 High-performance AI training data intelligence pipeline with distributed chunked streaming, dual-algorithm semantic deduplication (SimHash & MinHash), automated multi-signal quality scoring, regex/heuristic PII and toxicity redacting, and an immutable audit lineage ledger.
 
@@ -143,7 +143,7 @@ Throughput               :   1379.3 docs/sec
 
 ## Test Specifications
 
-The test suite in [test_engine.py](file:///c:/Users/4/Music/backups/shivanshdimri-main/projects/training_data_intelligence_platform/test_engine.py) validates the core pipeline components:
+The test suite in [test_engine.py](test_engine.py) validates the core pipeline components:
 
 1. **`test_simhash_identical_and_near_duplicates`**: Verifies exact zero distance on identical text, small Hamming distance ($\le 4$) on near duplicates, and large divergence on disjoint topics.
 2. **`test_minhash_jaccard_similarity`**: Validates signature alignment with 1.0 Jaccard for identical text and $\ge 0.70$ for minor modifications.

@@ -101,6 +101,10 @@ def _get_shingles(text: str, n: int = 3) -> List[str]:
 
 def compute_minhash(text: str, num_perm: int = 64) -> List[int]:
     """Compute MinHash signature vector for text."""
+    while len(_MINHASH_A) < num_perm:
+        _MINHASH_A.append(_RNG.randint(1, _MERSENNE_PRIME - 1))
+        _MINHASH_B.append(_RNG.randint(0, _MERSENNE_PRIME - 1))
+
     shingles = _get_shingles(text)
     if not shingles:
         return [0] * num_perm
@@ -140,7 +144,7 @@ def score_text_quality(text: str, min_words: int = 5, min_score: float = 0.4) ->
             reason="Empty document text",
         )
 
-    alnum_chars = sum(1 for c in text if c.isalnum() or c.isspace())
+    alnum_chars = sum(1 for c in text if c.isalnum())
     alnum_ratio = round(alnum_chars / char_count, 4)
     unique_words = len(set(w.lower() for w in words))
     unique_ratio = round(unique_words / word_count, 4)
